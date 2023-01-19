@@ -21,14 +21,13 @@ namespace SporksFun
 			//The answer it will show will be 80!
 			//Console.WriteLine(rollTotal[2]);
 
-			string userInput;
+			int rolls;
 			int intVal;
 
 			Console.WriteLine("Welcome to the Dice Throwing Simulator.");
 			Console.WriteLine("How many dice rolls would you like to simulate ? Ex: 1000");
-			userInput = Console.ReadLine();
+			rolls = Convert.ToInt32(Console.ReadLine());
 			// Converts to integer type
-			intVal = Convert.ToInt32(userInput);
 
 			Console.WriteLine("DICE ROLLING SIMULATION RESULTS");
 			Console.WriteLine("Each  *  represents 1% of the total number of rolls.");
@@ -41,10 +40,7 @@ namespace SporksFun
 
 			//Here we build a new array with 12 objects
 			int[] totals = new int[13]; // array to keep track of totals
-			int rolls; // number of rolls specified by user
 			Random rand = new Random(); // random number generator
-			Console.Write("Enter the number of rolls: ");
-			rolls = int.Parse(Console.ReadLine());
 			for (int i = 0; i < rolls; i++)
 			{
 				int roll1 = rand.Next(1, 7); // roll the first die
@@ -52,11 +48,11 @@ namespace SporksFun
 				int total = roll1 + roll2; // calculate the total
 				totals[total]++; // increment the total in the array
 			}
-			Console.WriteLine("Total\tPercentage\tHistogram");
+
 			for (int i = 2; i <= 12; i++)
 			{
 				double percentage = ((double)totals[i] / rolls) * 100; // calculate the percentage
-				Console.Write(i + "\t" + percentage + "%\t\t");
+				Console.Write(i + ": " );
 				int histogram = (int)Math.Round(percentage); // calculate the number of * to print
 				for (int j = 0; j < histogram; j++)
 				{
